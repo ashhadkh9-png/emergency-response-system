@@ -1,0 +1,217 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+// =========================================================================
+// MEMBER 1: Nayab - STRUCTURE DEFINITION & MAIN MENU (DO-WHILE, SWITCH, POINTERS)
+// =========================================================================
+
+struct Emergency {
+    char name[50];
+    char phone[15];
+    char address[100];
+    int typeIndex;      // 0: Ambulance, 1: Fire, 2: Police, 3: Disaster/Rescue
+    float distance;
+    float totalCost;
+    int priorityLevel;  // 1: Critical, 2: Urgent, 3: Normal
+};
+
+// Function Prototypes (Modularity)
+void inputUserInfo(struct Emergency *e);
+void selectEmergencyType(struct Emergency *e);
+void calculatePriority(struct Emergency *e);
+void calculateFinalBill(struct Emergency *e);
+void saveAndShowReport(struct Emergency e);
+void displayTeamMembers(); 
+
+int main() {
+    struct Emergency emg;
+    int choice;
+
+    // MEMBER 1 LOGIC: 'do-while loop' for a continuous interactive menu
+    do {
+        printf("\n==================================================");
+        printf("\n       PAKISTAN EMERGENCY RESPONSE (1122)         ");
+        printf("\n==================================================");
+        printf("\n1. Create New Emergency Alert");
+        printf("\n2. View Team Members (Project Exhibition)");
+        printf("\n3. Exit System");
+        printf("\n==================================================");
+        printf("\nSelect Option (1-3): ");
+        
+        // Pointers logic implicitly used in scanf
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                // Logic: Call by Reference (&emg) to update data globally across modules
+                inputUserInfo(&emg);         // Member 2
+                selectEmergencyType(&emg);   // Member 3
+                calculatePriority(&emg);     // Member 4
+                calculateFinalBill(&emg);    // Member 5
+                saveAndShowReport(emg);      // Member 6
+                break;
+            case 2:
+                displayTeamMembers();
+                break;
+            case 3:
+                printf("\nExiting System... Allah Hafiz! Stay Safe Pakistan.\n");
+                break;
+            default:
+                printf("\nInvalid Choice! Please enter a valid option.\n");
+        }
+    } while (choice != 3);
+
+    return 0;
+}
+
+void displayTeamMembers() {
+    printf("\n--- Project Developed By (6 Members) ---");
+    printf("\nMember 1: Structures, Global Variables & Main Menu (Do-While)");
+    printf("\nMember 2: User Input, Strings & Call by Reference");
+    printf("\nMember 3: Emergency Classification, Arrays & Pointers");
+    printf("\nMember 4: Priority & Distance Logic (If-Else Statements)");
+    printf("\nMember 5: Financial Processing (PKR Cost Calculation)");
+    printf("\nMember 6: File Handling, I/O & Call by Value (Report Gen)\n");
+}
+
+// =========================================================================
+// MEMBER 2: Rabia - USER INFORMATION INPUT (STRINGS & CALL BY REFERENCE)
+// =========================================================================
+void inputUserInfo(struct Emergency *e) {
+    printf("\n--- Member 2: User Input Module ---");
+    printf("\nEnter Patient/Victim Name: ");
+    
+    // Clear buffer
+    while(getchar() != '\n');
+    
+    // Logic: Scanset to accept spaces in strings
+    scanf("%[^\n]s", e->name); 
+    
+    printf("Enter Contact Number (Format: 03xx-xxxxxxx): ");
+    scanf("%s", e->phone);
+    
+    printf("Enter Live Address (Area, City in Pakistan): ");
+    while(getchar() != '\n');
+    scanf("%[^\n]s", e->address);
+}
+
+// =========================================================================
+// MEMBER 3: Ashhad - EMERGENCY TYPE SELECTION (ARRAYS & LOOPS)
+// =========================================================================
+void selectEmergencyType(struct Emergency *e) {
+    // Array of Strings (2D Array)
+    char types[4][25] = {"Medical / Ambulance", "Fire Brigade", "Police (15)", "Disaster / Rescue"};
+    int choice;
+    int valid = 0;
+
+    printf("\n--- Member 3: Classification Module ---");
+    printf("\nAvailable Emergency Services:\n");
+    
+    // For loop to display array elements
+    for(int i = 0; i < 4; i++) {
+        printf("%d. %s\n", i+1, types[i]);
+    }
+
+    // While loop for input validation
+    while (!valid) {
+        printf("Select Service (1-4): ");
+        scanf("%d", &choice);
+        
+        if(choice >= 1 && choice <= 4) {
+            e->typeIndex = choice - 1; // Array index logic
+            valid = 1;
+        } else {
+            printf("Invalid selection! Please select between 1 and 4.\n");
+        }
+    }
+}
+
+// =========================================================================
+// MEMBER 4: Prishey - PRIORITY CALCULATION (IF-ELSE, FLOATS)
+// =========================================================================
+void calculatePriority(struct Emergency *e) {
+    printf("\n--- Member 4: Priority & Distance Logic ---");
+    printf("\nEnter Distance from Nearest Station (in KM): ");
+    scanf("%f", &e->distance);
+
+    // If-Else conditional statements logic
+    if (e->distance <= 5.0) {
+        e->priorityLevel = 1; // Critical - Near
+        printf("Status: CRITICAL (Estimated Response Time: < 5 mins)\n");
+    } else if (e->distance > 5.0 && e->distance <= 15.0) {
+        e->priorityLevel = 2; // Urgent - Moderate
+        printf("Status: URGENT (Estimated Response Time: 10-15 mins)\n");
+    } else {
+        e->priorityLevel = 3; // Normal - Far
+        printf("Status: STANDARD (Estimated Response Time: > 20 mins)\n");
+    }
+}
+
+// =========================================================================
+// MEMBER 5: Shakila - COST CALCULATION IN PKR (MATH & CALL BY REFERENCE)
+// =========================================================================
+void calculateFinalBill(struct Emergency *e) {
+    float baseTax = 300.0;     // Fixed Govt Tax / Service Fee in PKR
+    float ratePerKm = 95.0;    // Service rate per KM in PKR
+    float emergencySurcharge = 0.0;
+
+    printf("\n--- Member 5: PKR Financial Processing ---");
+    
+    // Additional logic: Critical emergencies have a small priority surcharge
+    if (e->priorityLevel == 1) {
+        emergencySurcharge = 150.0; // Extra charges for fast dispatch
+    } else if (e->priorityLevel == 2) {
+        emergencySurcharge = 50.0;
+    }
+
+    // Mathematical formula for PKR billing
+    e->totalCost = baseTax + (e->distance * ratePerKm) + emergencySurcharge;
+}
+
+// =========================================================================
+// MEMBER 6: Sehar - FILE HANDLING & PKR REPORT (FILE I/O & CALL BY VALUE)
+// =========================================================================
+void saveAndShowReport(struct Emergency e) { // Call by value
+    FILE *fptr;
+    char types[4][25] = {"Medical / Ambulance", "Fire Brigade", "Police (15)", "Disaster / Rescue"};
+    
+    // Generate Timestamp
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    printf("\n--- Member 6: File I/O & Final Report ---");
+
+    // File I/O Logic
+    fptr = fopen("pkr_emergency_record.txt", "a"); // Append mode
+
+    if (fptr == NULL) {
+        printf("\nError: Could not open record file!");
+        return;
+    }
+
+    // Saving to File
+    fprintf(fptr, "[%02d-%02d-%d %02d:%02d] Name: %s | Contact: %s | Type: %s | Priority: %d | Bill: Rs. %.2f\n", 
+            tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min,
+            e.name, e.phone, types[e.typeIndex], e.priorityLevel, e.totalCost);
+    fclose(fptr);
+
+    // Final Report Display (GUI equivalent in console)
+    printf("\n\n");
+    printf("==================================================\n");
+    printf("      OFFICIAL EMERGENCY RECEIPT (GOVT OF PK)     \n");
+    printf("==================================================\n");
+    printf("Date/Time: %02d-%02d-%d %02d:%02d\n", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);
+    printf("Name     : %s\n", e.name);
+    printf("Contact  : %s\n", e.phone);
+    printf("Location : %s\n", e.address);
+    printf("Service  : %s\n", types[e.typeIndex]);
+    printf("Distance : %.2f KM\n", e.distance);
+    printf("Priority : %s\n", (e.priorityLevel==1)?"CRITICAL (IMMEDIATE)": (e.priorityLevel==2)?"URGENT":"STANDARD");
+    printf("--------------------------------------------------\n");
+    printf("Total Payable: Rs. %.2f (PKR)\n", e.totalCost);
+    printf("==================================================\n");
+    printf(">>> Data successfully saved to 'pkr_emergency_record.txt'\n");
+    printf(">>> Emergency units have been dispatched. Stay calm!\n");
+}
