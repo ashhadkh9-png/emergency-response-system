@@ -81,8 +81,8 @@ STANDARD (>15km): +0 PKR
 ---
 
 ## 📝 Sample Output
-Name     : Ali Ahmed
-Contact  : 03001234567
+Name     : Ashhad
+Contact  : 0340-2802910
 Location : Karachi, Sindh
 Service  : Medical / Ambulance
 Distance : 8.5 KM
@@ -111,27 +111,7 @@ Total Payable: Rs. 1057.50 (PKR)
 - **Compiler**: GCC
 - **Version Control**: GitHub
 - **Semester**: 1st Semester BSCS
-- **University**: [Your University Name]
-
----
-
-## 🐙 GitHub Commit Messages
-
-```bash
-git commit -m "Member 1: Nayab Sajid - Added main menu and structures"
-git commit -m "Member 2: Rabia Aziz - Added user input module"
-git commit -m "Member 3: Muhammad Ashhad - Added emergency type classification"
-git commit -m "Member 4: Prishey Khan - Added priority calculation logic"
-git commit -m "Member 5: Shakila - Added cost calculation module"
-git commit -m "Member 6: Sehar Tariq - Added report and file handling"
-git commit -m "Final: All modules integrated and tested"
-```
-
----
-
-## 📞 Contact & Support
-
-For questions or issues, contact the project lead: **Nayab Sajid**
+- **University**: Benazir Bhutto Shaheed Univerity, Lyari
 
 ---
 
