@@ -1,83 +1,138 @@
-# 🚨 Emergency Response System
-**BSCS Semester 1 — Group Project**  
-Console Application written in C
+# 🚨 Pakistan Emergency Response System (1122)
+**BSCS Semester 1 — Group Project**
+
+A console-based emergency response system that allows citizens to report emergencies in Pakistan and receive instant billing and dispatch information.
 
 ---
 
-## 📖 About
-A console-based Emergency Response System that helps users report
-emergencies, calculates priority levels and response costs, and
-saves a full report to file.
+## 📖 Project Overview
+
+This system mimics the **1122 Emergency Services** in Pakistan. Users can:
+- Report emergencies (Medical, Fire, Police, Disaster)
+- Enter location details
+- Get automatic priority assessment
+- Receive PKR billing instantly
+- Get a receipt and confirmation
 
 ---
 
 ## ✨ Features
-- Collect user info (name, phone, address)
-- Select emergency type: Ambulance, Fire Brigade, Police, Disaster Alert
-- Enter distance to location
-- Auto-calculate priority (Critical / High / Medium / Low)
-- Calculate cost based on emergency type + distance
-- Generate and save a full response report
+
+- **Emergency Classification**: 4 types of services (Ambulance, Fire, Police, Disaster)
+- **Distance-based Priority**: Auto-calculates urgency based on distance
+- **PKR Billing System**: Calculates cost with base tax + per-km rate + surcharges
+- **File Logging**: All reports saved to `pkr_emergency_record.txt`
+- **Receipt Generation**: Official govt-style receipt for each emergency
+- **Timestamp Tracking**: Every emergency logged with date/time
 
 ---
 
-## 👨‍💻 Team Members
+## 👥 Team Members & Roles
 
-| Name | Role |
-|---|---|
-| Muhammad Ashhad | Main Menu, Report & File Saving, GitHub |
-| Shakila | User Info Input |
-| Rabia Aziz | Emergency Type Selection |
-| Nayab Sajid | Distance Input & Priority Calculation |
-| Sehar Tariq | Cost Calculation |
-| Prishey Khan | Console UI & Graphics |
+| Member | Name | Role | Features |
+|---|---|---|---|
+| **1** | Nayab Sajid | Structures & Main Menu | Do-while loop, Switch case, Menu system |
+| **2** | Rabia Aziz | User Input Module | String input, Call by reference, scanf |
+| **3** | Muhammad Ashhad | Emergency Classification | Arrays, For loops, Input validation |
+| **4** | Prishey Khan | Priority Calculation | If-else logic, Distance calculations |
+| **5** | Shakila | Cost Calculation | Math operations, PKR billing formula |
+| **6** | Sehar Tariq | Report & File Handling | File I/O, Time functions, Receipt generation |
 
 ---
 
 ## 🛠️ How to Compile & Run
 
+### On Windows (Git Bash):
 ```bash
-gcc main.c user.c emergency.c cost.c report.c ui.c -o emergency_response
+gcc main.c user_input.c emergency_type.c priority_calc.c cost_calc.c report.c -o emergency_response.exe
+./emergency_response.exe
+```
+
+### On Linux/Mac:
+```bash
+gcc main.c user_input.c emergency_type.c priority_calc.c cost_calc.c report.c -o emergency_response
 ./emergency_response
 ```
 
-On Windows:
-```bash
-gcc main.c user.c emergency.c cost.c report.c ui.c -o emergency_response.exe
-emergency_response.exe
-```
+---
+
+## 🔄 Workflow
+
+1. User runs program
+2. Main menu shows 3 options
+3. User selects "Create New Emergency Alert"
+4. System collects: Name → Phone → Address → Emergency Type → Distance
+5. System calculates: Priority → Cost
+6. System generates receipt and saves to file
+7. User returns to menu
 
 ---
 
-## 📁 File Structure
+## 💰 Pricing Formula
+Total Cost = Base Tax (300 PKR) + (Distance × Rate Per KM) + Priority Surcharge
+Rate Per KM: 95 PKR
+Priority Surcharges:
 
-```
-emergency-response/
-├── main.c         → Main menu and program flow
-├── emergency.h    → Shared structs and declarations
-├── user.c         → User info input
-├── emergency.c    → Emergency selection, distance, priority
-├── cost.c         → Cost calculation
-├── report.c       → Final report display and file saving
-├── ui.c           → Console graphics and colors
-└── reports.txt    → Auto-generated saved reports
-```
+CRITICAL (≤5km): +150 PKR
+URGENT (5-15km): +50 PKR
+STANDARD (>15km): +0 PKR
+
 
 ---
 
-## 🚨 Emergency Types & Costs
+## 📝 Sample Output
+Name     : Ali Ahmed
+Contact  : 03001234567
+Location : Karachi, Sindh
+Service  : Medical / Ambulance
+Distance : 8.5 KM
+Priority : URGENT
+Total Payable: Rs. 1057.50 (PKR)
 
-| Type | Base Cost | Per KM |
-|---|---|---|
-| 🚑 Ambulance | PKR 500 | PKR 80/km |
-| 🔥 Fire Brigade | PKR 1000 | PKR 100/km |
-| 👮 Police Help | PKR 300 | PKR 50/km |
-| 🌪️ Disaster Alert | PKR 2000 | PKR 150/km |
+---
+
+## 🎓 C Concepts Used
+
+- **Structures**: Emergency struct with multiple data types
+- **Pointers**: Call by reference (&emg)
+- **Arrays**: 2D arrays for emergency types
+- **Loops**: Do-while, For, While
+- **Conditionals**: If-else statements
+- **Functions**: Modular programming with 6 separate functions
+- **File I/O**: fopen, fprintf, fclose
+- **Strings**: scanf with %[^\n]
+- **Time**: time.h for timestamps
 
 ---
 
 ## 📚 Language & Tools
-- Language: C
-- Compiler: GCC
-- Version Control: GitHub
-- Semester: 1st Semester BSCS
+
+- **Language**: C (ANSI C)
+- **Compiler**: GCC
+- **Version Control**: GitHub
+- **Semester**: 1st Semester BSCS
+- **University**: [Your University Name]
+
+---
+
+## 🐙 GitHub Commit Messages
+
+```bash
+git commit -m "Member 1: Nayab Sajid - Added main menu and structures"
+git commit -m "Member 2: Rabia Aziz - Added user input module"
+git commit -m "Member 3: Muhammad Ashhad - Added emergency type classification"
+git commit -m "Member 4: Prishey Khan - Added priority calculation logic"
+git commit -m "Member 5: Shakila - Added cost calculation module"
+git commit -m "Member 6: Sehar Tariq - Added report and file handling"
+git commit -m "Final: All modules integrated and tested"
+```
+
+---
+
+## 📞 Contact & Support
+
+For questions or issues, contact the project lead: **Nayab Sajid**
+
+---
+
+**Made with ❤️ by BSCS Semester 1 Students**
