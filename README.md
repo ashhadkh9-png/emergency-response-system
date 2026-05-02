@@ -1,7 +1,7 @@
 # 🚨 Pakistan Emergency Response System (1122)
 **BSCS Semester 1 — Group Project**
 
-A console-based emergency response system that allows citizens to report emergencies in Pakistan and receive instant billing and dispatch information.
+A simple C-based emergency response system that allows citizens to report emergencies in Pakistan and receive instant priority assessment and PKR billing.
 
 ---
 
@@ -104,15 +104,87 @@ Total Payable: Rs. 1057.50 (PKR)
 - **Time**: time.h for timestamps
 
 ---
+## 📝 How Each Member Contributed
+
+**Member 1 (Nayab Sajid)** - Structures & Main Menu
+- Defined `struct Emergency` with all required fields
+- Created main() with do-while loop for continuous menu
+- Implemented switch case for user choices
+- Used pointers implicitly in scanf (&choice)
+
+**Member 2 (Rabia Aziz)** - User Input
+- Collected: Name, Phone, Address
+- Used scanf with %[^\n] to accept spaces in strings
+- Implemented call by reference (&e) to modify struct
+- Buffer management with getchar()
+
+**Member 3 (Muhammad Ashhad)** - Emergency Classification
+- Created 2D array of emergency types
+- Implemented for loop to display options
+- Added while loop for input validation
+- Used array indexing (typeIndex)
+
+**Member 4 (Prishey Khan)** - Priority Calculation
+- Took distance as float input
+- Used if-else-if chain for priority levels
+- Critical: distance ≤ 5km
+- Urgent: distance 5-15km
+- Standard: distance > 15km
+
+**Member 5 (Shakila)** - Cost Calculation
+- Implemented billing formula
+- Base tax = 300 PKR (fixed)
+- Distance cost = distance × 95 PKR
+- Priority surcharge: Critical +150, Urgent +50, Standard 0
+- Used float arithmetic for precision
+
+**Member 6 (Sehar Tariq)** - Report & File Handling
+- Used fopen() in append mode to log all emergencies
+- Used fprintf() to write formatted data
+- Used time.h to generate timestamps
+- Used call by value (report receives struct copy)
+- Generated official receipt format
+
+---
+## ✅ Testing Checklist
+
+- [ ] All 6 .c files compile without errors
+- [ ] Main menu displays correctly
+- [ ] Can create emergency alert
+- [ ] User info input accepts spaces
+- [ ] All 4 emergency types selectable
+- [ ] Distance input calculates priority correctly
+- [ ] Cost calculation matches formula
+- [ ] Receipt displays all information
+- [ ] Report saved to pkr_emergency_record.txt
+- [ ] Can return to menu and create new alerts
+- [ ] Exit option works properly
+
+---
 
 ## 📚 Language & Tools
 
-- **Language**: C (ANSI C)
+- **Language**: C (Simple, Standard C - ANSI C)
 - **Compiler**: GCC
 - **Version Control**: GitHub
 - **Semester**: 1st Semester BSCS
+- **Lines of Code**: ~250 lines
+- **Modules**: 6 separate .c files
 - **University**: Benazir Bhutto Shaheed Univerity, Lyari
 
 ---
 
+## 🎯 Learning Outcomes
+
+This project teaches:
+1. ✅ Modular programming (separate functions)
+2. ✅ Data structures (structs)
+3. ✅ Pointers and references
+4. ✅ Arrays and loops
+5. ✅ File input/output
+6. ✅ Team collaboration on GitHub
+7. ✅ Real-world problem solving (emergency system)
+8. ✅ Business logic (billing calculations)
+
+---
 **Made with ❤️ by BSCS Semester 1 Students**
