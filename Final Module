@@ -32,7 +32,8 @@ int main() {
     // MEMBER 1 LOGIC: 'do-while loop' for a continuous interactive menu
     do {
         printf("\n==================================================");
-        printf("\n       PAKISTAN EMERGENCY RESPONSE (1122)         ");
+         printf("\n       PAKISTAN EMERGENCY RESPONSE       ");
+      //  printf("\n       PAKISTAN EMERGENCY RESPONSE (1122)         ");
         printf("\n==================================================");
         printf("\n1. Create New Emergency Alert");
         printf("\n2. View Team Members (Project Exhibition)");
